@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Part 3 - Piha Lodge Form</title>
+        <link rel="stylesheet" href="../page_styles.css"/>
+        <link rel="stylesheet" href="new_styles_task_3.css"/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <main>
+            <div id="form-header">
+                <h1>Piha Lodge Booking</h1>
+                <div id="form-progress">
+                    <label for="form-progress-bar" id="form-progress-percentage">0%</label>
+                    <progress name="form-progress-bar" id="progress-bar" value=13 max="100"></progress>
+                    
+                </div> 
+            </div>
+            
+            <div id="buttons-section">
+                <button onclick="previous()">Previous</button>
+                <button onclick="next()">Next</button>
+            </div>
+
+            <div id="windows">
+                <div class="window">
+                    <h2>Personal Details</h2>
+                    <div class="user-details" style="height: 30%">
+                        <div>
+                            <label for="firstNameEntry">First Name</label>
+                            <input id="firstNameEntry"/></input>
+                        </div>
+                        <div>
+                            <label for="lastNameEntry">Last Name</label>
+                            <input id="lastNameEntry"/></input><br/>
+                        </div>
+                        <div>
+                            <label for="phoneNumberEntry">Phone Number</label>
+                            <input id="phoneNumberEntry"/></input><br/>
+                        </div>
+                        <div>
+                            <label for="emailEntry">Email Address</label>
+                            <input id="emailEntry"/></input><br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="window">
+                    <h2>Trip Overview</h2>
+                </div>
+                <div class="window">
+                    <h2>Trip Addons</h2>
+                </div>
+                <div class="window">
+                    <h2>Terms and Conditions</h2>
+                </div>
+                <div class="window">
+                    <h2>Final Review</h2>
+                </div>
+            </div>
+        </main>
+        <script src="control.js"></script>
+    </body>
+</html>
