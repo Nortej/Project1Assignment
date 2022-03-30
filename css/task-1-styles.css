@@ -1,0 +1,237 @@
+:root {
+    --duration: 18s;
+  }
+  
+/* keyframe animations */
+@keyframes appear-from-bottom {
+0% {
+    visibility: visible; 
+    font-size: 0px;
+    color: yellow;
+}
+70% {
+    color: lightblue;
+}
+100% {
+    right: 3vw;
+    font-size: 20px;
+    color: white;
+}
+}
+
+@keyframes opacity-change {
+0% {opacity: 0;}
+10% {opacity: 1;}
+33% {opacity: 1;}
+40% { opacity: 0;}
+100% {opacity: 0;}
+}
+
+@keyframes change-display {
+0% {
+    flex-direction: row;
+}
+33.3% {flex-direction: row-reverse;}
+66.6% {flex-direction: column; }
+100% {
+    flex-direction: row;
+}
+}
+
+@keyframes slow-reveal {
+0% { width: 0; }
+50% { width: 100%; }
+100% { width: 100%; }
+}
+
+@keyframes fade-element {
+0% { opacity: 0; }
+10% { opacity: 1; }
+90% { opacity: 1;}
+100% { opacity: 0; }
+}
+
+@keyframes bg-color-change {
+0% { /* blue */
+    background: rgb(0,112,184);
+    background: linear-gradient(148deg, rgba(0,112,184,1) 0%, rgba(34,156,222,1) 75%, rgba(164,181,190,1) 100%);
+}
+33% { /* green */
+    background: rgb(39,144,0);
+    background: linear-gradient(148deg, rgba(39,144,0,1) 0%, rgba(148,255,3,1) 75%, rgba(224,255,0,1) 100%);
+}
+66% { /* yellow */
+    background: rgb(219,178,0);
+    background: linear-gradient(148deg, rgba(199,158,0,1) 0%, rgba(255,207,3,1) 20%, rgba(255,207,3,1) 75%, rgb(251, 255, 0) 100%);
+}
+}
+
+@keyframes text-color-change {
+0% { /* blue */
+    color: rgb(59, 180, 255);
+}
+33% { /* green */
+    color: rgb(90, 170, 0)
+}
+66% { /* yellow */
+    color: rgb(219, 178, 0);
+}
+100% { /* blue */
+    color: rgb(59, 180, 255);
+}
+}
+
+@keyframes slide-up {
+100% {
+    top: calc(-9em - 8px * 3);
+}
+}
+
+@keyframes hide {
+from {
+    visibility: visible;
+    opacity: 1;
+}
+to { 
+    visibility: hidden;
+    opacity: 0; 
+}
+}
+
+/* styling */
+body {
+background-color: black;
+font-family: sans-serif;
+}
+
+#ad {
+position: relative;
+height: 300px;
+}
+
+#details {
+color: white;
+font-style: italic;
+font-size: 15px;
+background-color: rgba(0, 0, 0, 0.9);
+position: absolute;
+bottom: 3px;
+right: 110vw;
+margin: 0;
+padding: 10px;
+border: 4px solid white;
+border-radius: 20px 0;
+animation: appear-from-bottom 1s var(--duration) 1 forwards, text-color-change 6s var(--duration) 2 backwards;
+}
+
+#ad-bg-images {
+position: absolute;
+left: 0;
+width: 100%;
+height: 100%;
+margin: 0 auto;
+animation: hide 1s var(--duration) 1 forwards;
+}
+
+#ad-bg-images img {
+position: absolute;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: 0 0;
+opacity: 0;
+animation: opacity-change 9s ease-in-out 2 forwards;
+}
+
+#ad-bg-images .third {
+    animation-delay: 6s;
+}
+#ad-bg-images .second {
+    animation-delay: 3s;
+    object-position: 0 10%;
+}
+#ad-bg-images .first {
+    object-position: 0 50%;
+}
+
+
+#ad-content {
+position: absolute;
+top: 0;
+height: 100%;
+width: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+animation: change-display 9s 2 steps(1) normal forwards, hide 0s var(--duration) forwards;
+}
+
+h1 {
+font-family: sans-serif;
+font-variant: small-caps;
+text-align: center;
+color: black;
+border-radius: 20px 0px;
+border: 4px solid rgba(255, 255, 255, 0.75);
+padding: 0 30px;
+margin: 0;
+}
+
+#main_text, .revealing-text {
+margin: 20px 100px;
+}
+
+#main_text {
+font-size: 3em;
+font-style: italic;
+animation: bg-color-change 9s steps(1) 2 forwards, fade-element 3s 6 forwards;
+}
+
+.revealing-text {
+display: inline-flex;
+padding: 0;
+animation: fade-element 3s 6 forwards;
+}
+
+.scroll-text {
+margin: 0;
+width: 0;
+padding: 0;
+height: calc(3em + 8px);
+overflow: hidden;
+line-height: 3em;
+animation: slow-reveal 3s 6 forwards;
+}
+
+.scroll-text li {
+list-style: none;
+position: relative;
+top: 0;
+animation: slide-up 9s steps(3) 2 forwards;
+}
+
+.scroll-text li h1 {
+margin: 0;
+animation: bg-color-change 9s steps(1) 2 forwards;
+}
+
+#final-screen {
+visibility: hidden;
+height: 100%;
+background-image: url("../images/piha1.jpeg");
+background-size: cover;
+display: flex;
+justify-content: center;
+align-items: center;
+animation: hide 1s var(--duration) 1 forwards reverse;
+}
+
+#final-screen h1 {
+background-color: rgba(0, 0, 0, 0.9);
+text-align: center;
+font-size: 50px;
+width: 150px;
+padding: 0 50px;
+animation: text-color-change 6s infinite;
+}
