@@ -1,147 +1,172 @@
 :root {
     --duration: 18s;
-  }
+}
   
 /* keyframe animations */
 @keyframes appear-from-bottom {
-0% {
-    visibility: visible; 
-    font-size: 0px;
-    color: yellow;
-}
-70% {
-    color: lightblue;
-}
-100% {
-    right: 3vw;
-    font-size: 20px;
-    color: white;
-}
+    0% {
+        visibility: visible; 
+        font-size: 0px;
+        color: yellow;
+    }
+    70% {
+        color: lightblue;
+    }
+    100% {
+        right: 3vw;
+        font-size: 20px;
+        color: white;
+    }
 }
 
 @keyframes opacity-change {
-0% {opacity: 0;}
-10% {opacity: 1;}
-33% {opacity: 1;}
-40% { opacity: 0;}
-100% {opacity: 0;}
+    0% {opacity: 0;}
+    10% {opacity: 1;}
+    33% {opacity: 1;}
+    40% { opacity: 0;}
+    100% {opacity: 0;}
 }
 
 @keyframes change-display {
-0% {
-    flex-direction: row;
-}
-33.3% {flex-direction: row-reverse;}
-66.6% {flex-direction: column; }
-100% {
-    flex-direction: row;
-}
+    0% { flex-direction: row; }
+    33.3% { flex-direction: row-reverse; }
+    66.6% { flex-direction: column; }
+    100% { flex-direction: row; }
 }
 
 @keyframes slow-reveal {
-0% { width: 0; }
-50% { width: 100%; }
-100% { width: 100%; }
+    0% { width: 0; }
+    50% { width: 100%; }
+    100% { width: 100%; }
 }
 
 @keyframes fade-element {
-0% { opacity: 0; }
-10% { opacity: 1; }
-90% { opacity: 1;}
-100% { opacity: 0; }
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1;}
+    100% { opacity: 0; }
 }
 
 @keyframes bg-color-change {
-0% { /* blue */
-    background: rgb(0,112,184);
-    background: linear-gradient(148deg, rgba(0,112,184,1) 0%, rgba(34,156,222,1) 75%, rgba(164,181,190,1) 100%);
-}
-33% { /* green */
-    background: rgb(39,144,0);
-    background: linear-gradient(148deg, rgba(39,144,0,1) 0%, rgba(148,255,3,1) 75%, rgba(224,255,0,1) 100%);
-}
-66% { /* yellow */
-    background: rgb(219,178,0);
-    background: linear-gradient(148deg, rgba(199,158,0,1) 0%, rgba(255,207,3,1) 20%, rgba(255,207,3,1) 75%, rgb(251, 255, 0) 100%);
-}
+    0% { /* blue */
+        background: rgb(0,112,184);
+        background: linear-gradient(148deg, rgba(0,112,184,1) 0%, rgba(34,156,222,1) 75%, rgba(164,181,190,1) 100%);
+    }
+    33% { /* green */
+        background: rgb(39,144,0);
+        background: linear-gradient(148deg, rgba(39,144,0,1) 0%, rgba(148,255,3,1) 75%, rgba(224,255,0,1) 100%);
+    }
+    66% { /* yellow */
+        background: rgb(219,178,0);
+        background: linear-gradient(148deg, rgba(199,158,0,1) 0%, rgba(255,207,3,1) 20%, rgba(255,207,3,1) 75%, rgb(251, 255, 0) 100%);
+    }
 }
 
 @keyframes text-color-change {
-0% { /* blue */
-    color: rgb(59, 180, 255);
-}
-33% { /* green */
-    color: rgb(90, 170, 0)
-}
-66% { /* yellow */
-    color: rgb(219, 178, 0);
-}
-100% { /* blue */
-    color: rgb(59, 180, 255);
-}
+    0% { /* blue */
+        color: rgb(59, 180, 255);
+    }
+    33% { /* green */
+        color: rgb(90, 170, 0)
+    }
+    66% { /* yellow */
+        color: rgb(219, 178, 0);
+    }
+    100% { /* blue */
+        color: rgb(59, 180, 255);
+    }
 }
 
 @keyframes slide-up {
-100% {
-    top: calc(-9em - 8px * 3);
-}
+    100% {
+        top: calc(-9em - 8px * 3);
+    }
 }
 
 @keyframes hide {
-from {
-    visibility: visible;
-    opacity: 1;
+    from {
+        visibility: visible;
+        opacity: 1;
+    }
+    to { 
+        visibility: hidden;
+        opacity: 0; 
+    }
 }
-to { 
-    visibility: hidden;
-    opacity: 0; 
-}
+
+@keyframes object-pulse {
+    0% {
+        transform: scale(1, 1);
+    }
+    45% {
+        transform: scale(1.2, 1.2);
+    }
+    55% {
+        transform: scale(1.2, 1.2);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
 }
 
 /* styling */
 body {
-background-color: black;
-font-family: sans-serif;
+    position: relative;
+    background-color: black;
+    font-family: sans-serif;
+    overflow-x: hidden;
+}
+
+#hidden-area {
+    position: absolute;
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    z-index: 100;
+}
+
+#ad-link {
+    text-decoration: underline;
 }
 
 #ad {
-position: relative;
-height: 300px;
+    position: relative;
+    height: 400px;
 }
 
 #details {
-color: white;
-font-style: italic;
-font-size: 15px;
-background-color: rgba(0, 0, 0, 0.9);
-position: absolute;
-bottom: 3px;
-right: 110vw;
-margin: 0;
-padding: 10px;
-border: 4px solid white;
-border-radius: 20px 0;
-animation: appear-from-bottom 1s var(--duration) 1 forwards, text-color-change 6s var(--duration) 2 backwards;
-}
+    color: white;
+    font-style: italic;
+    font-size: 15px;
+    background-color: rgba(0, 0, 0, 0.9);
+    position: absolute;
+    bottom: 3px;
+    right: 110vw;
+    margin: 0;
+    padding: 10px;
+    border: 4px solid white;
+    border-radius: 20px 0;
+    animation: appear-from-bottom 1s var(--duration) 1 forwards, text-color-change 6s var(--duration) 2 backwards;
+    }
 
 #ad-bg-images {
-position: absolute;
-left: 0;
-width: 100%;
-height: 100%;
-margin: 0 auto;
-animation: hide 1s var(--duration) 1 forwards;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    animation: hide 1s var(--duration) 1 forwards;
 }
 
 #ad-bg-images img {
-position: absolute;
-left: 0;
-width: 100%;
-height: 100%;
-object-fit: cover;
-object-position: 0 0;
-opacity: 0;
-animation: opacity-change 9s ease-in-out 2 forwards;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 0;
+    opacity: 0;
+    animation: opacity-change 9s ease-in-out 2 forwards;
 }
 
 #ad-bg-images .third {
@@ -157,81 +182,146 @@ animation: opacity-change 9s ease-in-out 2 forwards;
 
 
 #ad-content {
-position: absolute;
-top: 0;
-height: 100%;
-width: 100%;
-display: flex;
-justify-content: space-between;
-align-items: center;
-animation: change-display 9s 2 steps(1) normal forwards, hide 0s var(--duration) forwards;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: change-display 9s 2 steps(1) normal forwards, hide 0s var(--duration) forwards;
 }
 
 h1 {
-font-family: sans-serif;
-font-variant: small-caps;
-text-align: center;
-color: black;
-border-radius: 20px 0px;
-border: 4px solid rgba(255, 255, 255, 0.75);
-padding: 0 30px;
-margin: 0;
+    font-family: sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+    color: black;
+    border-radius: 20px 0px;
+    border: 4px solid rgba(255, 255, 255, 0.75);
+    padding: 0 30px;
+    margin: 0;
 }
 
 #main_text, .revealing-text {
-margin: 20px 100px;
+    margin: 20px 20px;
 }
 
 #main_text {
-font-size: 3em;
-font-style: italic;
-animation: bg-color-change 9s steps(1) 2 forwards, fade-element 3s 6 forwards;
+    font-size: 3em;
+    font-style: italic;
+    animation: bg-color-change 9s steps(1) 2 forwards, fade-element 3s 6 forwards;
 }
 
 .revealing-text {
-display: inline-flex;
-padding: 0;
-animation: fade-element 3s 6 forwards;
+    display: inline-flex;
+    padding: 0;
+    animation: fade-element 3s 6 forwards;
 }
 
 .scroll-text {
-margin: 0;
-width: 0;
-padding: 0;
-height: calc(3em + 8px);
-overflow: hidden;
-line-height: 3em;
-animation: slow-reveal 3s 6 forwards;
+    margin: 0;
+    width: 0;
+    padding: 0;
+    height: calc(3em + 8px);
+    overflow: hidden;
+    line-height: 3em;
+    animation: slow-reveal 3s 6 forwards;
 }
 
 .scroll-text li {
-list-style: none;
-position: relative;
-top: 0;
-animation: slide-up 9s steps(3) 2 forwards;
+    list-style: none;
+    position: relative;
+    top: 0;
+    animation: slide-up 9s steps(3) 2 forwards;
 }
 
 .scroll-text li h1 {
-margin: 0;
-animation: bg-color-change 9s steps(1) 2 forwards;
+    margin: 0;
+    animation: bg-color-change 9s steps(1) 2 forwards;
 }
 
 #final-screen {
-visibility: hidden;
-height: 100%;
-background-image: url("../images/piha1.jpeg");
-background-size: cover;
-display: flex;
-justify-content: center;
-align-items: center;
-animation: hide 1s var(--duration) 1 forwards reverse;
+    visibility: hidden;
+    height: 100%;
+    background-image: url("../images/piha1.jpeg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: hide 1s var(--duration) 1 forwards reverse;
 }
 
-#final-screen h1 {
-background-color: rgba(0, 0, 0, 0.9);
-text-align: center;
-font-size: 50px;
-width: 150px;
-padding: 0 50px;
-animation: text-color-change 6s infinite;
+@keyframes image-move-left {
+    0% {
+        transform: translate(100vw, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }
+
+@keyframes image-move-up {
+    0% {
+        transform: translate(0, 100vw);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes object-shake {
+    0% { transform: rotateZ(0deg); }
+    20% { transform: rotateZ(10deg); }
+    40% { transform: rotateZ(-20deg); }
+    60% { transform: rotateZ(10deg); }
+    80% { transform: rotateZ(0deg); }
+}
+
+
+#final-screen img {
+    position: absolute;
+    width: 100px;
+    padding: 20px;
+    border: 4px solid;
+    border-radius: 20px;
+    
+}
+
+#final-screen img.white {
+    left: 10vw;
+    border-color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: image-move-left 2s var(--duration) 1, hide 1s calc(var(--duration) + 5s) forwards,
+    object-shake 1s calc(var(--duration) + 3s);
+}
+
+#final-screen img.black {
+    right: 10vw;
+    border-color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+    animation: image-move-up 2s var(--duration) 1, hide 1s calc(var(--duration) + 5s) forwards,
+    object-shake 1s calc(var(--duration) + 3s);
+}
+
+#final-screen-text h1 {
+    background-color: rgba(0, 0, 0, 0.9);
+    text-align: center;
+    text-decoration: underline;
+    font-size: 50px;
+    width: 150px;
+    padding: 5px 50px;
+    animation: text-color-change 6s infinite;
+    transition: transform 1s ease-in-out, padding 1s;
+}
+
+#final-screen-text {
+    animation: object-pulse 4s var(--duration) infinite;
+}
+
+#final-screen-text h1:hover {
+    transform: scale(1.2, 1.2);
+    padding: 7px 50px;
+}
+
+

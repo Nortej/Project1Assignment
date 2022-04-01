@@ -1,54 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
     <head>
         <title>Part 3 - Piha Lodge Form</title>
-        <link rel="stylesheet" href="../page_styles.css"/>
-        <link rel="stylesheet" href="new_styles_task_3.css"/>
+        <link rel="stylesheet" href="css/default-styles.css"/>
+        <link rel="stylesheet" href="css/task-3-styles.css"/>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+        <script src="javascript/form-control.js"></script>
     </head>
-    <body>
+    <body onload="init()">
         <main>
             <div id="form-header">
                 <h1>Piha Lodge Booking</h1>
                 <div id="form-progress">
                     <label for="form-progress-bar" id="form-progress-percentage">0%</label>
-                    <progress name="form-progress-bar" id="progress-bar" value=13 max="100"></progress>
-                    
+                    <progress id="form-progress-bar" value=13 max="100"></progress>
                 </div> 
             </div>
             
             <div id="buttons-section">
                 <button onclick="previous()">Previous</button>
+                <p id="invalid-data-label">There are fields with invalid data</p>
                 <button onclick="next()">Next</button>
             </div>
 
-            <div id="windows">
+            <form name="booking-form" id="windows">
                 <div class="window">
                     <h2>Personal Details</h2>
                     <div class="user-details" style="height: 30%">
-                        <div>
-                            <label for="firstNameEntry">First Name</label>
-                            <input id="firstNameEntry"/></input>
-                        </div>
-                        <div>
-                            <label for="lastNameEntry">Last Name</label>
-                            <input id="lastNameEntry"/></input><br/>
-                        </div>
-                        <div>
-                            <label for="phoneNumberEntry">Phone Number</label>
-                            <input id="phoneNumberEntry"/></input><br/>
-                        </div>
-                        <div>
-                            <label for="emailEntry">Email Address</label>
-                            <input id="emailEntry"/></input><br/>
-                        </div>
+                        <table>
+                            <tr>
+                                <td style="width: 30%;"><label for="firstNameEntry">First Name</label></td>
+                                <td><input id="firstNameEntry" name="fname" required/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="lastNameEntry">Last Name</label></td>
+                                <td><input id="lastNameEntry" name="lname" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="phoneNumberEntry">Mobile Phone Number</label></td>
+                                <td><input type="tel" id="phoneNumberEntry" name="phone" maxlength=10 pattern="[0-9]{10}" required/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="emailEntry">Email Address</label></td>
+                                <td><input type="email" id="emailEntry" name="email" required/></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <div class="window">
                     <h2>Trip Overview</h2>
+                    <div class="user-details" style="height: 30%">
+                        <table>
+                           <tr>
+                                <td style="width: 30%;"><label for="whereEntry">Where do you want to stay?</label></td>
+                                <td>
+                                    <select id="whereEntry" name="where" required>
+                                        <option value="seaside">Seaside Lodge</option>
+                                        <option value="marina-view">Marina View</option>
+                                        <option value="beach">Beach Lodge</option>
+                                        <option value="silent-resort">Silent Resort</option>
+                                    </select>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td><label for="whenEntry">When do you want to stay?</label></td>
+                                <td><input type="date" id="whenEntry" name="when" required/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="adultsEntry">Adult Count</label></td>
+                                <td><input type="number" id="adultsEntry" name="adultCount" min="0"/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="childsEntry">Child Count</label></td>
+                                <td><input type="number" id="childsEntry" name="childCount" min="0"/></td>
+                            </tr> 
+                        </table>
+                    </div>
                 </div>
                 <div class="window">
                     <h2>Trip Addons</h2>
@@ -59,8 +90,8 @@
                 <div class="window">
                     <h2>Final Review</h2>
                 </div>
-            </div>
+            </form>
         </main>
-        <script src="control.js"></script>
+        
     </body>
 </html>
