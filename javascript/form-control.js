@@ -98,6 +98,11 @@ function validatePersonalDetails() {
     return validData;
 }
 
+function validateTripDetails() {
+    var validData = true;
+
+}
+
 function removeClass(element) {
     element.classList.remove('invalid-input');
 }
