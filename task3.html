@@ -16,21 +16,21 @@
             <div id="form-header">
                 <h1>Piha Lodge Booking</h1>
                 <div id="form-progress">
-                    <label for="form-progress-bar" id="form-progress-percentage">0%</label>
-                    <progress id="form-progress-bar" value=13 max="100"></progress>
+                    <div id="form-progress-bar"></div>
+                    <p id="form-progress-percent">0%</p>
                 </div> 
             </div>
             
             <div id="buttons-section">
-                <button onclick="previous()">Previous</button>
+                <button onclick="previous()" id="backward-button">Previous</button>
                 <p id="invalid-data-label">There are fields with invalid data</p>
-                <button onclick="next()">Next</button>
+                <button onclick="next()" id="forward-button">Next</button>
             </div>
 
-            <form name="booking-form" id="windows">
+            <form name="booking-form" id="windows" action="action_page.php">
                 <div class="window">
                     <h2>Personal Details</h2>
-                    <div class="user-details" style="height: 30%">
+                    <div class="user-details">
                         <table>
                             <tr>
                                 <td style="width: 30%;"><label for="firstNameEntry">First Name</label></td>
@@ -53,12 +53,13 @@
                 </div>
                 <div class="window">
                     <h2>Trip Overview</h2>
-                    <div class="user-details" style="height: 50%;">
+                    <div class="user-details">
                         <table>
                            <tr>
                                 <td style="width: 50%;"><label for="whereEntry">Where do you want to stay?</label></td>
                                 <td>
                                     <select id="whereEntry" name="where" required>
+                                        <option value=""></option>
                                         <option value="seaside">Seaside Lodge</option>
                                         <option value="marina-view">Marina View</option>
                                         <option value="beach">Beach Lodge</option>
@@ -72,25 +73,127 @@
                             </tr>
                             <tr>
                                 <td><label for="adultsEntry">Adult Count</label></td>
-                                <td><input type="number" id="adultsEntry" name="adultCount" min="0"/></td>
+                                <td><input type="number" id="adultsEntry" name="adultCount" min="0" required/></td>
                             </tr>
                             <tr>
                                 <td><label for="childsEntry">Child Count</label></td>
-                                <td><input type="number" id="childsEntry" name="childCount" min="0"/></td>
+                                <td><input type="number" id="childsEntry" name="childCount" min="0" required/></td>
                             </tr> 
                         </table>
                     </div>
                 </div>
                 <div class="window">
                     <h2>Trip Addons</h2>
+                    <div class="user-details">
+                        <table>
+                           <tr>
+                                <td style="width: 50%;"><label>Do you require cooking facilities</label></td>
+                                <td>
+                                    <div>
+                                        <label for="cookYes">Yes</label><input type="radio" name="cookToolsEntry" id="cookYes" value="Yes"/>
+                                        <label for="cookNo">No</label><input type="radio" name="cookToolsEntry" id="cookNo" value="No"/>
+                                    </div>
+                                </td>
+                            <tr><td>&nbsp;</td></tr>
+                            </tr>
+                                <td><label>Swimming Supplies</label></td>
+                                <td>Optional</td>
+                            <tr>
+                            </tr>
+                                <td><label class="indent">Surfboard Hire</label></td>
+                                <td class="text-range-combo"><p id="surfboardDisplay">0</p><input type="range" id="surfboardRange" name="surfboards" min="0" max="100" value="0" required/></td>
+                            <tr>
+                                <td><label class="indent">Swimming Googles Hire</label></td>
+                                <td class="text-range-combo"><p id="gogglesDisplay">0</p><input type="range" id="gogglesRange" name="goggles" min="0" max="100" value="0"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="indent">Wet Suit Hire</label></td>
+                                <td class="text-range-combo"><p id="wetsuitDisplay">0</p><input type="range" id="wetsuitRange" name="wetsuit" min="0" max="100" value="0"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="indent">Scuba Gear Hire</label></td>
+                                <td class="text-range-combo"><p id="scubaDisplay">0</p><input type="range" id="scubaRange" name="scuba" min="0" max="100" value="0"/></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <div class="window">
                     <h2>Terms and Conditions</h2>
+                    <div class="user-details">
+                        <div class="agreement-section">
+                            <h3>Local Native Conservation Agreement</h3>
+                            <p>I agree to the Local Native Conservation Agreement which acts to prevent the harm of endangered native wildlife within Piha.
+                                Any act of damaging wildlife can have legal repercussions.
+                            </p>
+                            <div>
+                                <label for="lnca-agree">I agree to Local Native Conservation Act</label>
+                                <input type="checkbox" id="lnca-agree"    checked="true"/>
+                            </div>
+                        </div>
+
+                        <div class="agreement-section">
+                            <h3>Terms and Conditions</h3>
+                            <p>Failing to comply with the terms and conditions can result in legal actions.</p>
+                            <div>
+                                <label for="t-and-c-agree">I agree to the Terms and Conditions</label>
+                                <input type="checkbox" id="t-and-c-agree"     checked="true"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="window">
                     <h2>Final Review</h2>
+                    <div class="user-details">
+                        <div class="review-section">
+                            <h3>Personal Details</h3>
+                            <div class="review-details">
+                                <p>First Name: <span id="first-name"></span></p>
+                                <p>Last Name: <span id="last-name"></span></p>
+                                <p>Email Address: <span id="email-address"></span></p>
+                                <p>Phone Number: <span id="phone-number"></span></p>
+                            </div>
+                        </div>
+                        <div class="review-section">
+                            <h3>Trip Details</h3>
+                            <div class="review-details">
+                                <p>Where: <span id="where"></span></p>
+                                <p>When: <span id="when"></span></p>
+                                <p>Adult Count: <span id="adult-count"></span></p>
+                                <p>Child Count: <span id="child-count"></span></p>
+                            </div>
+                        </div>
+                        <div class="review-section">
+                            <h3>Trip Addons</h3>
+                            <div class="review-details">
+                                <p>Cooking Facilities Required: <span id="cooking-tools"></span></p>
+                                <p>Surfboard Hire Count: <span id="surfboard-count"></span></p>
+                                <p>Goggles Hire Count: <span id="goggles-count"></span></p>
+                                <p>Wet Suit Hire Count: <span id="wetsuit-count"></span></p>
+                                <p>Scuba Gear Hire Count: <span id="scuba-count"></span></p>
+                            </div>
+                        </div>
+                        <div class="review-section">
+                            <h3>Terms and Conditions</h3>
+                            <div class="review-details">
+                                <p>Local Native Conservation Agreement: Agreed</p>
+                                <p>Terms and Conditions: Agreed</p>
+                            </div>
+                        </div>
+                        <div id="captcha">
+                            <h3>Please select the colour provided in the box below</h3>
+                            <p>Note: you can change the colour mode by clicking on the Up/Down arrow twice to reach HEX</p>
+                            <div id="captcha-content">
+                                <label for="captcha-color">Enter color the color into the box provided</label>
+                                <span id="captcha-display"></span>
+                                <input type="color" id="captcha-color"/>
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="testSubmit()">Submit Data</button>
+                    </div>
                 </div>
             </form>
+            <br/>
         </main>
         
     </body>

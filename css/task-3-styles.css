@@ -8,18 +8,18 @@ h1, h2 {
 
 body {
     width: 100%;
-    height: 100vh;
     margin: 0;
     padding: 0;
-    background-image: url("../images/piha1.jpeg");
-    background-position: center;
+    background: url("../images/piha1.jpeg") fixed;
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
 }
 
 main {
     background-color: rgba(0, 0, 0, 0.322);
     width: 70%;
-    height: 1000px;
     margin: 50px auto;
     border-radius: 20px 0px;
 }
@@ -27,25 +27,51 @@ main {
 
 #form-header {
     padding: 30px;
-    background: rgb(255,255,255);
-    background: linear-gradient(90deg, rgba(255,255,255,0.500437675070028) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 80%, rgba(255,255,255,0.5032387955182073) 100%);
+    background: rgba(255, 255, 255, 0.7);
     border: 3px solid black;
-    border-radius: 20px 0px;
+    border-radius: inherit;
 }   
 
 #form-header h1 {
-    text-align: center;
+    background-color: #fe8943;
 }
+
 #form-progress {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    position: relative;
     width: 50%;
-    margin: 0 auto;
+    margin: 20px auto;
+    border-radius: 0 10px 10px 0;
+    background-color: rgba(0, 0, 0, 0.2);
 }
-#form-progress progress {
-    width: 60%;
-    margin-left: 10px;
+
+@keyframes move-background-image {
+    from {
+        background-position-x: 0px;
+    } to {
+        background-position-x: 780px;
+    }
+}
+
+#form-progress-bar {
+    background-size: 60px 60px;
+    background-color: #fe8943;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 25%,
+                      transparent 25%,
+                      transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%,
+                      transparent 75%, transparent);
+    height: 2em;
+    text-align: center;
+    transition: width 1s ease;
+    animation: move-background-image 10s infinite linear;
+    border: 2px solid black;
+    border-radius: inherit;
+}
+
+#form-progress-percent {
+    position: absolute;
+    top: 27%;
+    left: 10px;
+    margin: 0;
 }
 
 #buttons-section {
@@ -59,58 +85,81 @@ main {
 #buttons-section button {
     width: 8em;
     padding: 10px;
+    border: 3px solid black;
+    background-color: #fe8943;
+    transition: background-color 0.5s, font-size 0.5s;
+}
+#buttons-section button:hover {
+    background-color: white;
+    font-size: 1.25em;
+}
+
+#forward-button {
+    border-radius: 0 10px 10px 0;
+    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+#backward-button {
+    border-radius: 10px 0 0 10px;
+    box-shadow: -3px 6px 10px rgba(0, 0, 0, 0.5);
 }
 
 #invalid-data-label {
-    background-color: red;
+    width: 120px;
+    background-color: #fe8943;
     border: 3px solid black;
     padding: 5px 10px;
-    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
 
 #windows {
-    position: relative;
-    height: 70%;
     width: 80%;
     margin: 0 auto;
 }
 
 .window {
-    transition: opacity 1s, visiblity 1s, transform 1s;
     opacity: 0;
-    transform: translateX(-100px);
-
-    visibility: hidden;
-    position: absolute;
+    display: none;
     width: 100%;
-    height: 100%;
     border: 3px solid black;
     border-radius: 20px 0px;
     background-color: rgba(255, 255, 255, 0.5);
     overflow-y: auto;
+    margin-bottom: 30px;
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    } to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
 }
 
 .window.visible {
-    visibility: visible;
     opacity: 1;
-    transform: translateX(0px);
+    display: block;
+    animation: slide-in 1s 1 forwards;
 }
 
 .window.hidden {
-    visibility: hidden;
     opacity: 0;
-    transform: translateX(-100px);
+    display: none;
 }
 
 .window h2 {
-    margin: 30px;
+    margin: 30px 40px;
+    background-color: #fe8943;
 }
 
 .user-details {
     background-color: rgba(255, 255, 255, 0.7);
-    margin: 0 auto; 
+    margin: 0 auto 30px auto; 
     padding: 10px;
-    border-radius: 20px 0px;
+    border-radius: inherit;
     width: 80%;
     height: 80%;
     display: flex;
@@ -120,6 +169,10 @@ main {
 
 td {
     padding: 3px 0;
+}
+
+.agreement-section {
+    margin: 20px 0;
 }
 
 label::after {
@@ -136,8 +189,13 @@ input, select {
     color: white;
 }
 
-input[type=number] { width: 20%; }
+input[type=range] { 
+    padding: 0;
+    width: 80%; 
+}
+input[type=number], input[type=color] { width: 20%; }
 input[type=date] { width: 60%; }
+input[type=radio], input[type=checkbox] { width: 10%; }
 
 input:focus, select:focus { 
     width: 85% !important;
@@ -147,16 +205,65 @@ input:focus, select:focus {
     color: black;
 }
 
+input[type=radio]:focus, input[type=checkbox]:focus {
+    width: 10% !important;
+    box-shadow: none;
+}
+input[type=color]:focus { 
+    width: 20% !important; 
+    box-shadow: none;
+}
 input[type=number]:focus { width: 50% !important;}
-input[type=number]:focus { width: 50% !important;}
-
-.invalid-input {
-    border-color: red;
-    border-width: 4px;
+input[type=range]:focus { 
+    box-shadow: none;
+    width: 80% !important;
 }
 
+.text-range-combo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.text-range-combo p {
+    display: inline;
+    margin: 0;
+}
 
+.indent::before {
+    content: "      ";
+    white-space: pre;
+}
 
+.invalid-input {
+    border-width: 4px;
+    border-color: #fe8943;
+}
 
+div.invalid-input {
+    border: 4px solid #fe8943;
+}
 
+.review-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.review-details {
+    width: 100%;
+    border-bottom: 4px solid black;
+    margin-bottom: 20px;
+}
+
+#captcha-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#captcha-display {
+    border: 2px solid black;
+    padding: 3px;
+    margin: 10px;
+}

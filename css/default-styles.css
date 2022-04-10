@@ -1,10 +1,13 @@
-h1, h2 {
+h1, h2, h3 {
     margin: 0;
     font-family: sans-serif;
     font-style: italic;
     text-align: center;
 }
 
-label, input, p, a {
+label, input, p, a, button, select, td, span {
+    font-size: 1em;
     font-family: Arial, Helvetica, sans-serif;
+    width: auto;
 }
+
