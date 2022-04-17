@@ -3,7 +3,8 @@
     <head>
         <title>Piha Assignment 1 - Jesse Nortey (1547620)</title>
         <link rel="stylesheet" href="css/default-styles.css"/>
-        <!-- <link rel="stylesheet" href="css/task-2-styles.css"/> -->
+        <link rel="stylesheet" href="css/task-1-styles.css"/>
+        <link rel="stylesheet" href="css/task-2-styles.css"/>
         <link rel="stylesheet" href="css/task-3-styles.css"/>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,9 +12,36 @@
         <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 
         <script src="javascript/form-control.js"></script>
+        <script src="javascript/ad-control.js"></script>
     </head>
-    <body onload="init()">
-        <main>
+    <body onload="init(); adControlInit();">
+        <header>
+            <div id="hilux-ad-container">
+                <a id="hilux-ad" href="https://www.toyota.co.nz/new-car/hilux" target="_blank">
+                    <div id="hilux-car-container">
+                        <img id="hilux-car" src="images/hilux-car.png"/>
+                        <div id="wheel-container">
+                            <img class="hilux-wheel" id="back"  src="images/car_wheel.png"/>
+                            <img class="hilux-wheel" id="front" src="images/car_wheel.png"/>
+                        </div>
+                    </div>
+    
+                    <div id="text">
+                        <h1 class="text-slide" id="first-text">The All New</h1>
+                        <h1 class="text-slide" id="second-text">Toyota Hilux</h1>
+                        <div class="text-slide" id="third-text">
+                            <div id="link-background"></div>
+                            <h3 id="link-text">Order Today</h3>
+                        </div>
+                    </div>
+                </a>
+                
+                <div id="starting-background"></div>
+                <button id="restart" onclick="restartAd()">↺</button>
+                <h3 id="creator-details">By Jesse Nortey (1547620)</h3>
+            </div>
+        </header>
+        <main id="piha-form">
             <div id="form-header">
                 <h1>Piha Lodge Booking</h1>
                 <div id="form-progress">
@@ -56,11 +84,11 @@
                     <h2>Trip Overview</h2>
                     <div class="user-details">
                         <table>
-                           <tr>
+                            <tr>
                                 <td style="width: 50%;"><label for="whereEntry">Where do you want to stay?</label></td>
                                 <td>
                                     <select id="whereEntry" name="where" required>
-                                        <option value=""></option>
+                                        <option value="">&nbsp;</option>
                                         <option value="seaside">Seaside Lodge</option>
                                         <option value="marina-view">Marina View</option>
                                         <option value="beach">Beach Lodge</option>
@@ -68,7 +96,7 @@
                                     </select>
                                 </td>
                             </tr>
-                             <tr>
+                                <tr>
                                 <td><label for="whenEntry">When do you want to stay?</label></td>
                                 <td><input type="date" id="whenEntry" name="when" required/></td>
                             </tr>
@@ -87,7 +115,7 @@
                     <h2>Trip Addons</h2>
                     <div class="user-details">
                         <table>
-                           <tr>
+                            <tr>
                                 <td style="width: 50%;"><label>Do you require cooking facilities</label></td>
                                 <td>
                                     <div>
@@ -95,14 +123,16 @@
                                         <label for="cookNo">No</label><input type="radio" name="cookToolsEntry" id="cookNo" value="No"/>
                                     </div>
                                 </td>
-                            <tr><td>&nbsp;</td></tr>
                             </tr>
+                            <tr><td></td><td></td></tr>
+                            <tr>
                                 <td><label>Swimming Supplies</label></td>
                                 <td>Optional</td>
-                            <tr>
                             </tr>
+                            <tr>
                                 <td><label class="indent">Surfboard Hire</label></td>
                                 <td class="text-range-combo"><p id="surfboardDisplay">0</p><input type="range" id="surfboardRange" name="surfboards" min="0" max="100" value="0" required/></td>
+                            </tr>
                             <tr>
                                 <td><label class="indent">Swimming Googles Hire</label></td>
                                 <td class="text-range-combo"><p id="gogglesDisplay">0</p><input type="range" id="gogglesRange" name="goggles" min="0" max="100" value="0"/></td>
@@ -128,7 +158,7 @@
                             </p>
                             <div>
                                 <label for="lnca-agree">I agree to Local Native Conservation Act</label>
-                                <input type="checkbox" id="lnca-agree"    checked="true"/>
+                                <input type="checkbox" id="lnca-agree"/>
                             </div>
                         </div>
 
@@ -137,7 +167,7 @@
                             <p>Failing to comply with the terms and conditions can result in legal actions.</p>
                             <div>
                                 <label for="t-and-c-agree">I agree to the Terms and Conditions</label>
-                                <input type="checkbox" id="t-and-c-agree"     checked="true"/>
+                                <input type="checkbox" id="t-and-c-agree"/>
                             </div>
                         </div>
                     </div>
@@ -196,6 +226,34 @@
             </form>
             <br/>
         </main>
-        
+        <footer>
+            <a href="http://www.piha.co.nz/" id="ad-link" target="_blank">
+                <div id="ad">  
+                    <div id="ad-bg-images">
+                        <img class="third" src="images/piha1.jpeg"/>
+                        <img class="second" src="images/piha3.jpeg"/> 
+                        <img class="first" src="images/piha2.jpeg"/> 
+                    </div>
+                    <div id="ad-content">
+                        <h1 id="main-text">Piha</h1>
+                        <div class="revealing-text">
+                            <ul class="scroll-text">
+                                <li><h1>Wild</h1></li>
+                                <li><h1>Scenic</h1></li>
+                                <li><h1>Home</h1></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="final-screen">
+                        <img class="black" src="images/tickets-black.png"/>
+                        <img class="white" src="images/tickets-white.png"/>
+                        <div id="final-screen-text">
+                            <h1>Visit Piha Today</h1>
+                        </div>
+                    </div>
+                    <p id="details">Jesse Nortey (1547620)</p>
+                </div>
+            </a>
+        </footer>
     </body>
 </html>

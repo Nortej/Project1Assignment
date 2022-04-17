@@ -12,7 +12,7 @@
         <script src="javascript/form-control.js"></script>
     </head>
     <body onload="init()">
-        <main>
+        <main id="piha-form">
             <div id="form-header">
                 <h1>Piha Lodge Booking</h1>
                 <div id="form-progress">
@@ -59,7 +59,7 @@
                                 <td style="width: 50%;"><label for="whereEntry">Where do you want to stay?</label></td>
                                 <td>
                                     <select id="whereEntry" name="where" required>
-                                        <option value=""></option>
+                                        <option value="">&nbsp;</option>
                                         <option value="seaside">Seaside Lodge</option>
                                         <option value="marina-view">Marina View</option>
                                         <option value="beach">Beach Lodge</option>
@@ -94,14 +94,16 @@
                                         <label for="cookNo">No</label><input type="radio" name="cookToolsEntry" id="cookNo" value="No"/>
                                     </div>
                                 </td>
-                            <tr><td>&nbsp;</td></tr>
                             </tr>
+                            <tr><td></td><td></td></tr>
+                            <tr>
                                 <td><label>Swimming Supplies</label></td>
                                 <td>Optional</td>
-                            <tr>
                             </tr>
+                            <tr>
                                 <td><label class="indent">Surfboard Hire</label></td>
                                 <td class="text-range-combo"><p id="surfboardDisplay">0</p><input type="range" id="surfboardRange" name="surfboards" min="0" max="100" value="0" required/></td>
+                            </tr>
                             <tr>
                                 <td><label class="indent">Swimming Googles Hire</label></td>
                                 <td class="text-range-combo"><p id="gogglesDisplay">0</p><input type="range" id="gogglesRange" name="goggles" min="0" max="100" value="0"/></td>

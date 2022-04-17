@@ -1,9 +1,8 @@
-/* default styles */
-h1, h2 {
+#piha-form h1, #piha-form h2 {
     border: 4px solid rgba(255, 255, 255, 0.75);
     border-radius: 20px 0px;
     padding: 10px 30px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #fe8943;
 }
 
 body {
@@ -30,10 +29,6 @@ main {
     border: 3px solid black;
     border-radius: inherit;
 }   
-
-#form-header h1 {
-    background-color: #fe8943;
-}
 
 #form-progress {
     position: relative;

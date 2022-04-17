@@ -1,14 +1,6 @@
 :root {
     --duration: 18s;
 }
-
-/* default styles */
-h1, h2 {
-    border: 4px solid rgba(255, 255, 255, 0.75);
-    border-radius: 20px 0px;
-    padding: 10px 30px;
-    background-color: rgba(0, 0, 0, 0.2);
-}
   
 /* keyframe animations */
 @keyframes appear-from-bottom {
@@ -118,28 +110,21 @@ h1, h2 {
 }
 
 /* styling */
-body {
+/* body {
     position: relative;
     background-color: black;
     font-family: sans-serif;
     overflow-x: hidden;
-}
-
-#hidden-area {
-    position: absolute;
-    background-color: black;
-    height: 100vh;
-    width: 100vw;
-    z-index: 100;
-}
+} */
 
 #ad-link {
     text-decoration: underline;
 }
 
-#ad {
+#ad-link #ad {
     position: relative;
     height: 400px;
+    overflow: hidden;
 }
 
 #details {
@@ -200,7 +185,7 @@ body {
     animation: change-display 9s 2 steps(1) normal forwards, hide 0s var(--duration) forwards;
 }
 
-h1 {
+#ad-link h1 {
     font-family: sans-serif;
     font-variant: small-caps;
     text-align: center;
@@ -208,14 +193,14 @@ h1 {
     border-radius: 20px 0px;
     border: 4px solid rgba(255, 255, 255, 0.75);
     padding: 0 30px;
-    margin: 0;
+    /* margin: 0; */
 }
 
-#main_text, .revealing-text {
+#main-text, .revealing-text {
     margin: 20px 20px;
 }
 
-#main_text {
+#main-text {
     font-size: 3em;
     font-style: italic;
     animation: bg-color-change 9s steps(1) 2 forwards, fade-element 3s 6 forwards;

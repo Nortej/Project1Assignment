@@ -1,35 +1,10 @@
-@keyframes background-slide-up {
-    from {
-        top: 0%;
-    }
-    to {
-        top: -100%;
-    }
-}
-
-@keyframes object-slide-up { 
-    from {
-        top: 100%;
-    }
-    to {
-        top: 0%;
-    }
-}
-
-@keyframes car-move {
-    from {
-        left: -500px;
-    } to {
-        left: 50px;
-    }
-}
-
-@keyframes wheel-rotate {
-    from {
-        transform: rotateZ(0deg);
-    } to {
-        transform: rotateZ(360deg);
-    }
+#hilux-ad-container {
+    width: 100%;
+    max-width: 1400px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
 }
 
 @keyframes display-button {
@@ -43,45 +18,13 @@
     }
 }
 
-@keyframes text-move {
-    60% {
-        opacity: 0;
-    }
-    to {
-        transform: translate(0%);
-        opacity: 1;
-    }
-}
-
-@keyframes details-slide-up {
-    to {
-        bottom: 10px;
-    }
-}
-
-#creator-details {
-    animation: details-slide-up 1s 8s forwards; 
-    bottom: -300px;
-    right: 10px;
-    position: absolute;
-    z-index: 100;
-    color: black;
-}
-
-#ad {
-    width: 100%;
-    height: 300px;
-    position: relative;
-    overflow: hidden;
-}
-
 #restart {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    animation: display-button 0.5s 9s forwards;
+    animation: display-button 0.5s 10s forwards;
     visibility: collapse;
     border: 0px;
     font-size: 100px;
@@ -90,17 +33,35 @@
     z-index: 2;
 }
 
+@keyframes background-slide-up {
+    from {
+        top: 0%;
+    }
+    to {
+        top: -100%;
+    }
+}
+
 #starting-background {
     width: 100%;
     height: 100%;
     background-image: url("../images/index-banner-alt.png");
     background-repeat: no-repeat;
     background-position: center 100%;
-    background-size: cover;
+    background-size: auto 100%;
     animation: background-slide-up 0.5s 1s forwards 1 ease-in-out;
     top: 0%;
     position: absolute;
     z-index: 1;
+}
+
+@keyframes object-slide-up { 
+    from {
+        top: 100%;
+    }
+    to {
+        top: 0%;
+    }
 }
 
 #hilux-ad {
@@ -109,54 +70,89 @@
     background-image: url("../images/hilux-ad-background.png");
     background-repeat: no-repeat;
     background-position: center 100%;
-    background-size: cover;
     animation: object-slide-up 0.5s 1s forwards 1 ease-in-out;
-    position: absolute;
-    top: 0%;
+    position: relative;
     overflow: hidden;
-    z-index: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#hilux-car {
-    width: 500px;
-    height: 180px;
-    background-image: url("../images/hilux-car.png");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    top: 25%;
-    left: -500px;
-    position: absolute;
+#hilux-ad.hilux-ad-above {
+    z-index: 5;
+}
+
+@keyframes car-move {
+    from {
+        transform: translateX(-100%);
+    } to {
+        transform: translateX(0px);
+    }
+}
+
+#hilux-car-container {
+    transform: translateX(-100%);
+    position: relative;
+    width: 60%;
+    min-width: 200px;
+    margin: 0;
     animation: car-move 2s 1.75s forwards 1 linear;
 }
 
+#hilux-car {
+    object-fit: contain;
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+}
+
 #wheel-container {
-    position: relative;
-    width: inherit;
-    top: 50%;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    max-width: 1218px;
+    top: 60%
+}
+
+@keyframes wheel-rotate {
+    from {
+        transform: rotateZ(0deg);
+    } to {
+        transform: rotateZ(360deg);
+    }
 }
 
 .hilux-wheel {
-    width: 60px;
-    height: 60px;
-    background-image: url("../images/car_wheel.png");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    animation: wheel-rotate 0.4s 1.75s forwards 5 linear;
     position: absolute;
+    object-fit: contain;
+    width: 13%;
+    height: auto;
+    max-height: 110px;
+    animation: wheel-rotate 0.4s 1.75s forwards 5 linear;
 }
 
-#back { left: 24%; }
-#front { right: 17%; }
+#front { right: 12%; }
+#back { left: 22%; }
 
 #text {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 270px;
+    width: 200px;
     height: 200px;
     position: absolute;
     right: 10%;
     top: 15%;
+}
+
+@keyframes text-move {
+    60% {
+        opacity: 0;
+    }
+    to {
+        transform: translate(0%);
+        opacity: 1;
+    }
 }
 
 .text-slide {
@@ -202,7 +198,7 @@
     position: absolute;
     background-color: black;
     border-radius: 30px;
-    width: 60%;
+    width: 100%;
     height: 100%;
     animation: shake-element 0.25s 7.25s forwards 3.5 linear;
     bottom: 0;
@@ -210,7 +206,21 @@
 }
 
 #link-text {
-    width: 60%;
+    width: 100%;
+    text-align: center;
 }
 
-/* ↺ */
+@keyframes details-slide-up {
+    to {
+        bottom: 10px;
+    }
+}
+
+#creator-details {
+    animation: details-slide-up 1s 8s forwards; 
+    bottom: -300px;
+    right: 10px;
+    position: absolute;
+    z-index: 100;
+    color: black;
+}
