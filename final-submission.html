@@ -13,8 +13,25 @@
 
         <script src="javascript/form-control.js"></script>
         <script src="javascript/ad-control.js"></script>
+        <script>
+            function toggleSideBar() {
+                document.getElementById('side-menu').classList.toggle("side-movement");
+            }
+        </script>
     </head>
     <body onload="init(); adControlInit();">
+        <!-- side bar menu -->
+        <div id="side-bar">
+            <a id="side-button" class="side-link" onclick="toggleSideBar()">☰</a>
+            <div id="side-menu">
+                <a class="side-link" onclick="toggleSideBar()">Close</a>
+                <a class="side-link" href="extra-docs/task-1-storyboard.pdf" target="_blank">Task 1 Storyboard</a>
+                <a class="side-link" href="extra-docs/task-2-storyboard.pdf" target="_blank">Task 2 Storyboard</a>
+                <a class="side-link" href="extra-docs/task-3-wireframes.pdf" target="_blank">Task 3 Wireframe</a>
+            </div>
+        </div>
+
+        <!-- Task 2: Recreate Advertisement-->
         <header>
             <div id="hilux-ad-container">
                 <a id="hilux-ad" href="https://www.toyota.co.nz/new-car/hilux" target="_blank">
@@ -41,6 +58,8 @@
                 <h3 id="creator-details">By Jesse Nortey (1547620)</h3>
             </div>
         </header>
+
+        <!-- Task 3: Piha Form -->
         <main id="piha-form">
             <div id="form-header">
                 <h1>Piha Lodge Booking</h1>
@@ -56,7 +75,7 @@
                 <button onclick="next()" id="forward-button">Next</button>
             </div>
 
-            <form name="booking-form" id="windows" action="action_page.php">
+            <form name="booking-form" id="windows">
                 <div class="window">
                     <h2>Personal Details</h2>
                     <div class="user-details">
@@ -173,7 +192,7 @@
                     </div>
                 </div>
                 <div class="window">
-                    <h2>Final Review</h2>
+                    <h2 id="final-review">Final Review</h2>
                     <div class="user-details">
                         <div class="review-section">
                             <h3>Personal Details</h3>
@@ -214,18 +233,20 @@
                             <h3>Please select the colour provided in the box below</h3>
                             <p>Note: you can change the colour mode by clicking on the Up/Down arrow twice to reach HEX</p>
                             <div id="captcha-content">
-                                <label for="captcha-color">Enter color the color into the box provided</label>
+                                <label for="captcha-color">Enter the colour into the box provided</label>
                                 <span id="captcha-display"></span>
                                 <input type="color" id="captcha-color"/>
                             </div>
                         </div>
 
-                        <button type="button" onclick="testSubmit()">Submit Data</button>
+                        <button id="submit-button" type="button" onclick="testSubmit()">Submit Data</button>
                     </div>
                 </div>
             </form>
             <br/>
         </main>
+
+        <!-- Task 1: Create Piha Advertisement-->
         <footer>
             <a href="http://www.piha.co.nz/" id="ad-link" target="_blank">
                 <div id="ad">  
@@ -255,5 +276,15 @@
                 </div>
             </a>
         </footer>
+
+        <div id="references">
+            <h1>References - Images</h1>
+            <a href="https://windows10spotlight.com/images/8ebc4eb63ab6548fd554ab4266e3fe9e">Piha Sunset - Windows 10 Spotlight</a>
+            <a href="https://www.stuff.co.nz/travel/kiwi-traveller/78556903/piha-beach--40-minutes-and-a-world-away-from-auckland">Piha Waterfront - Susan Blick</a>
+            <a href="https://www.dishadiscovers.com/wp-content/uploads/2021/04/piha-auckland-day-trips-735x478.jpeg">Piha Seaside - Disha Discovers</a>
+            <a href="https://www.toyota.co.nz/build-your-own/hilux/byo-hilux/">Hilux Side View - </a>
+            <a href="https://wallpaperaccess.com/full/2467586.jpg">Grassy Farmland - Wallpaper Access</a>
+            <a href="https://www.picng.com/down/45241">Car Wheels - PICNG.com</a>
+        </div>
     </body>
 </html>

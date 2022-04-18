@@ -4,11 +4,13 @@ const monthsOfYear = ["January", "February", "March", "April", "May", "June", "J
 
 // variables related to the form movement
 var mainWindow, windowElements, numberOfWindows;
+var previousButton, nextButton;
 var currentIndex = 0;
 
 const percentageJumps = [0, 33, 66, 90, 95, 100];
 const personalDetailsNames = ["fname", "lname", "email"];
-const tripOverviewNames = ["where", "when", "adultCount", "childCount"];
+const tripOverviewNames = ["where", "when"];
+const tripOverviewNumbers = ["adultCount", "childCount"];
 const tAndCNames = ["lnca-agree", "t-and-c-agree"];
 
 const fieldReviewMap = {
@@ -32,7 +34,11 @@ function init() {
     progressBar = document.getElementById("form-progress-bar");
     progressDisplay = document.getElementById("form-progress-percent");
 
-    // getting ehelements in the document related to the captcha
+    // getting the next/previous buttons from the document
+    previousButton = document.getElementById("backward-button");
+    nextButton = document.getElementById("forward-button");
+
+    // getting the elements in the document related to the captcha
     submitButton = document.getElementById("submit-form");
     invalidDataLabel = document.getElementById("invalid-data-label");
 
@@ -75,6 +81,7 @@ function init() {
     // sets the correct index's visibility
     setVisibility(windowElements[currentIndex], true);
     updateProgressBar();
+    updateButtonVisibility();
 }
 
 // sets the visibility of the next window to being visible
@@ -86,10 +93,7 @@ function next() {
     currentIndex++;
     setVisibility(windowElements[currentIndex], true);
     updateProgressBar();
-
-    if (currentIndex == 4) {
-        displayReviewData();
-    }
+    updateButtonVisibility();
 }
 
 // sets the visibility of the previous window to being visible
@@ -100,6 +104,23 @@ function previous() {
     currentIndex--;
     setVisibility(windowElements[currentIndex], true);
     updateProgressBar();
+    updateButtonVisibility();
+}
+
+function updateButtonVisibility() {
+    if (currentIndex == 0) {
+        previousButton.style.visibility = "hidden";
+    } 
+    else if (currentIndex == 1) {
+        previousButton.style.visibility = "visible";
+    }
+    else if (currentIndex == 3) {
+        nextButton.style.visibility = "visible";
+    }
+    else if (currentIndex == 4) {
+        displayReviewData();
+        nextButton.style.visibility = "hidden";
+    }
 }
 
 // sets the visibility of the element provided to being visible or invisible
@@ -184,6 +205,29 @@ function validateTripDetails() {
         }
     });
 
+    var totalVisitors = 0;
+    tripOverviewNumbers.forEach(fieldName => {
+        var field = document.forms["booking-form"][fieldName];
+        var value = field.value;
+        totalVisitors += value;
+        if (value < 0) {
+            field.classList.add("invalid-input");
+            validData = false;
+        }
+    });
+
+    if (totalVisitors == 0) {
+        tripOverviewNumbers.forEach(fieldName => {
+            var field = document.forms["booking-form"][fieldName].classList.add("invalid-input");
+        });
+        window.alert("You must have at least 1 person visiting");
+        validData = false;
+    } else {
+        tripOverviewNumbers.forEach(fieldName => {
+            var field = document.forms["booking-form"][fieldName].classList.remove("invalid-input");
+        });
+    }
+
     return validData;
 }
 
@@ -266,11 +310,17 @@ function testSubmit() {
         return;
     }
 
-    var pagesDataValidity = [!validatePersonalDetails(), !validateTripDetails(), !validateTripAddons(), !validateTAndC()];
+    var pagesDataValidity = [validatePersonalDetails(), validateTripDetails(), validateTripAddons(), validateTAndC()];
     if (pagesDataValidity.includes(false)) {
         window.alert("There are pages with invalid data. Some how they didn't get picked up in our earlier checks. \nPlease try again.");
         return;
     } 
-    
-    document.forms["booking-form"].submit();
+    document.getElementById('buttons-section').style.display = "none";
+    document.getElementById('submit-button').style.display = "none";
+    document.getElementById('captcha').remove();
+    document.getElementById('final-review').innerHTML = "Visit Recorded Successfully";
+    document.getElementById('windows').style.marginTop = "30px";
+    currentIndex++;
+    updateProgressBar();
+    // document.forms["booking-form"].submit();
 }

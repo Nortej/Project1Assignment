@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 h1, h2, h3 {
     margin: 0;
     font-family: sans-serif;
@@ -11,3 +15,50 @@ label, input, p, a, button, select, td, span {
     width: auto;
 }
 
+#side-bar {
+    position: fixed;
+    top: 300px;
+    z-index: 300;
+}
+
+#side-button {
+    position: absolute;
+    margin: 0;
+}
+
+#side-menu {
+    position: absolute;
+    background: linear-gradient(156deg, rgba(35,197,251,1) 0%, rgba(219,243,159,1) 50%, rgba(241,173,14,1) 100%);
+    background-color: rgba(35,197,251,1);
+    transition: opacity 1s, visibility 1.1s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#side-menu.side-movement {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-link {
+    display: block;
+    background-color: rgb(255, 188, 3);
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+    color: rgba(50, 50, 50, 1);
+}
+
+.side-link:visited {
+    color: rgba(50, 50, 50, 0.7);
+}
+
+#references {
+    background-color: white;
+    padding: 10px;
+    margin-top: 100px;
+}
+
+#references a {
+    display: block;
+}

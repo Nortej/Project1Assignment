@@ -8,6 +8,8 @@ function adControlInit() {
     texts = document.querySelectorAll('.text-slide');
     linkBackground = document.getElementById('link-background');
     restartButton = document.getElementById('restart');
+
+    window.setTimeout(restartAd, 9999);
 }
 
 function restartAd() {
