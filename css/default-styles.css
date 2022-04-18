@@ -24,6 +24,8 @@ label, input, p, a, button, select, td, span {
 #side-button {
     position: absolute;
     margin: 0;
+    width: 30px;
+    height: auto;
 }
 
 #side-menu {
