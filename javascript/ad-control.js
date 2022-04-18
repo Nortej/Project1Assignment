@@ -51,45 +51,6 @@ function restartAd() {
     }, 2001);
 }
 
-// function restartAd() {
-//     // hide the button
-//     restartButton.style.animationDelay = "10s";
-//     restartButton.style.animationPlayState = "running";
-//     restartButton.style.animationName = "none";
-//     window.setTimeout(() => {
-//         restartButton.style.animationName = "";
-//     });
-//     // reverse the animation
-//     var currentStartAnimation = startContainer.style.animation;
-//     var currentAdAnimation = adContainer.style.animation;
-//     adContainer.style.animation = "none";
-//     startContainer.style.animation = "none";
-//     adContainer.classList.add("hilux-ad-above");
-
-//     // reversing the direction of the animation
-//     window.setTimeout(() => {
-//         adContainer.style.animation = currentAdAnimation;
-//         adContainer.style.animationPlayState = "running";
-//         adContainer.style.animationDirection = "reverse";
-//         startContainer.style.animation = currentStartAnimation;
-//         startContainer.style.animationPlayState = "running";
-//         startContainer.style.animationDirection = "reverse";
-//     });
-
-//     // setting the animation to play forwards
-//     window.setTimeout(() => {
-//         startContainer.style.animation = currentStartAnimation;
-//         startContainer.style.animationPlayState = "running";
-//         adContainer.style.animation = currentAdAnimation;
-//         adContainer.style.animationPlayState = "running";
-
-//         changeAnimationName("none");
-
-//         window.setTimeout(changeAnimationName, 1, "");  
-//         adContainer.classList.remove("hilux-ad-above");
-//     }, 2001);
-// }
-
 function changeAnimationName(newAnimationName) {
     startContainer.style.animationName = newAnimationName;
     adContainer.style.animationName = newAnimationName;
