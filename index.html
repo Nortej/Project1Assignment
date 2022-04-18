@@ -1,47 +1,290 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-        <title>Project 1 Submission - Jesse Nortey</title>
-        <link rel="stylesheet" href="css/index-styles.css"/>
+        <title>Piha Assignment 1 - Jesse Nortey (1547620)</title>
         <link rel="stylesheet" href="css/default-styles.css"/>
+        <link rel="stylesheet" href="css/task-1-styles.css"/>
+        <link rel="stylesheet" href="css/task-2-styles.css"/>
+        <link rel="stylesheet" href="css/task-3-styles.css"/>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+        <script src="javascript/form-control.js"></script>
+        <script src="javascript/ad-control.js"></script>
+        <script>
+            function toggleSideBar() {
+                document.getElementById('side-menu').classList.toggle("side-movement");
+            }
+        </script>
     </head>
-    <body>
-        <div id="background-gradient"></div>
-        <div id="page-content">
-            <header>
-                <div id="header-content">
-                    <h1 id="header-text">Project 1</h1>
+    <body onload="init(); adControlInit();">
+        <!-- side bar menu -->
+        <div id="side-bar">
+            <img src="images/menu-icon.png" id="side-button" class="side-link" onclick="toggleSideBar()"/>
+            <div id="side-menu">
+                <a class="side-link" onclick="toggleSideBar()">Close</a>
+                <a class="side-link" href="extra-docs/task-1-storyboard.pdf" target="_blank">Task 1 Storyboard</a>
+                <a class="side-link" href="extra-docs/task-2-storyboard.pdf" target="_blank">Task 2 Storyboard</a>
+                <a class="side-link" href="extra-docs/task-3-wireframes.pdf" target="_blank">Task 3 Wireframe</a>
+            </div>
+        </div>
+
+        <!-- Task 2: Recreate Advertisement-->
+        <header>
+            <div id="hilux-ad-container">
+                <a id="hilux-ad" href="https://www.toyota.co.nz/new-car/hilux" target="_blank">
+                    <div id="hilux-car-container">
+                        <img id="hilux-car" src="images/hilux-car.png"/>
+                        <div id="wheel-container">
+                            <img class="hilux-wheel" id="back"  src="images/car_wheel.png"/>
+                            <img class="hilux-wheel" id="front" src="images/car_wheel.png"/>
+                        </div>
+                    </div>
+
+                    <div id="text">
+                        <h1 class="text-slide" id="first-text">Spinning</h1>
+                        <h1 class="text-slide" id="second-text">car wheels</h1>
+                        <div class="text-slide" id="third-text">
+                            <div id="link-background"></div>
+                            <h3 id="link-text">LEARN MORE!</h3>
+                        </div>
+                    </div>
+                </a>
+
+                <div id="starting-background"></div>
+                <button id="restart" onclick="restartAd()"><img src="images/restart.png" width="150" height="150"/></button>
+                <h3 id="creator-details">By Jesse Nortey (1547620)</h3>
+            </div>
+        </header>
+
+        <!-- Task 3: Piha Form -->
+        <main id="piha-form">
+            <div id="form-header">
+                <h1>Piha Lodge Booking</h1>
+                <div id="form-progress">
+                    <div id="form-progress-bar"></div>
+                    <p id="form-progress-percent">0%</p>
                 </div>
-            </header>
-            <main>
-                <div class="task" id="task-1">
-                    <img src="images/task-1-thumbnail.png" alt="Task 1 Thumbnail"/>
-                    <h2>Task 1</h2>
-                    <div class="task-links">
-                        <a href="task1.html" target="_blank">Task 1</a>
-                        <a href="extra-docs/task-1-storyboard.pdf" target="_blank">Task 1 Storyboard</a>
+            </div>
+
+            <div id="buttons-section">
+                <button onclick="previous()" id="backward-button">Previous</button>
+                <p id="invalid-data-label">There are fields with invalid data</p>
+                <button onclick="next()" id="forward-button">Next</button>
+            </div>
+
+            <form name="booking-form" id="windows">
+                <div class="window">
+                    <h2>Personal Details</h2>
+                    <div class="user-details">
+                        <table>
+                            <tr>
+                                <td style="width: 30%;"><label for="firstNameEntry">First Name</label></td>
+                                <td><input id="firstNameEntry" name="fname" required/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="lastNameEntry">Last Name</label></td>
+                                <td><input id="lastNameEntry" name="lname" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="phoneNumberEntry">Mobile Phone Number</label></td>
+                                <td><input type="tel" id="phoneNumberEntry" name="phone" maxlength=10 pattern="[0-9]{10}" required/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="emailEntry">Email Address</label></td>
+                                <td><input type="email" id="emailEntry" name="email" required/></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <div class="task" id="task-2">
-                    <h2>Task 2</h2>
-                    <img src="images/task-2-thumbnail.png" alt="Task 2 Thumbnail"/>
-                    <div class="task-links">
-                        <a href="task2.html" target="_blank">Task 2</a>
-                        <a href="extra-docs/task-2-storyboard.pdf" target="_blank">Task 2 Storyboard</a>
+                <div class="window">
+                    <h2>Trip Overview</h2>
+                    <div class="user-details">
+                        <table>
+                            <tr>
+                                <td style="width: 50%;"><label for="whereEntry">Where do you want to stay?</label></td>
+                                <td>
+                                    <select id="whereEntry" name="where" required>
+                                        <option value="">&nbsp;</option>
+                                        <option value="seaside">Seaside Lodge</option>
+                                        <option value="marina-view">Marina View</option>
+                                        <option value="beach">Beach Lodge</option>
+                                        <option value="silent-resort">Silent Resort</option>
+                                    </select>
+                                </td>
+                            </tr>
+                                <tr>
+                                <td><label for="whenEntry">When do you want to stay?</label></td>
+                                <td><input type="date" id="whenEntry" name="when" required/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="adultsEntry">Adult Count</label></td>
+                                <td><input type="number" id="adultsEntry" name="adultCount" min="0" required/></td>
+                            </tr>
+                            <tr>
+                                <td><label for="childsEntry">Child Count</label></td>
+                                <td><input type="number" id="childsEntry" name="childCount" min="0" required/></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <div class="task" id="task-3">
-                    <img src="images/task-3-thumbnail.png" alt="Task 3 Thumbnail"/>
-                    <h2>Task 3</h2>
-                    <div class="task-links">
-                        <a href="task3.html" target="_blank">Task 3</a>
-                        <a href="extra-docs/task-3-wireframes.pdf" target="_blank">Task 3 Wireframes</a>
+                <div class="window">
+                    <h2>Trip Addons</h2>
+                    <div class="user-details">
+                        <table>
+                            <tr>
+                                <td style="width: 50%;"><label>Do you require cooking facilities</label></td>
+                                <td>
+                                    <div>
+                                        <label for="cookYes">Yes</label><input type="radio" name="cookToolsEntry" id="cookYes" value="Yes"/>
+                                        <label for="cookNo">No</label><input type="radio" name="cookToolsEntry" id="cookNo" value="No"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr><td></td><td></td></tr>
+                            <tr>
+                                <td><label>Swimming Supplies</label></td>
+                                <td>Optional</td>
+                            </tr>
+                            <tr>
+                                <td><label class="indent">Surfboard Hire</label></td>
+                                <td class="text-range-combo"><p id="surfboardDisplay">0</p><input type="range" id="surfboardRange" name="surfboards" min="0" max="100" value="0" required/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="indent">Swimming Googles Hire</label></td>
+                                <td class="text-range-combo"><p id="gogglesDisplay">0</p><input type="range" id="gogglesRange" name="goggles" min="0" max="100" value="0"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="indent">Wet Suit Hire</label></td>
+                                <td class="text-range-combo"><p id="wetsuitDisplay">0</p><input type="range" id="wetsuitRange" name="wetsuit" min="0" max="100" value="0"/></td>
+                            </tr>
+                            <tr>
+                                <td><label class="indent">Scuba Gear Hire</label></td>
+                                <td class="text-range-combo"><p id="scubaDisplay">0</p><input type="range" id="scubaRange" name="scuba" min="0" max="100" value="0"/></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </main>
-            <footer>
-                <p class="footer-text">Submission for ISCG 6420 - Project 1<br/>
-                By <strong>Jesse Nortey</strong> (1547620)</p>
-            </footer>
+                <div class="window">
+                    <h2>Terms and Conditions</h2>
+                    <div class="user-details">
+                        <div class="agreement-section">
+                            <h3>Local Native Conservation Agreement</h3>
+                            <p>I agree to the Local Native Conservation Agreement which acts to prevent the harm of endangered native wildlife within Piha.
+                                Any act of damaging wildlife can have legal repercussions.
+                            </p>
+                            <div>
+                                <label for="lnca-agree">I agree to Local Native Conservation Act</label>
+                                <input type="checkbox" id="lnca-agree"/>
+                            </div>
+                        </div>
+
+                        <div class="agreement-section">
+                            <h3>Terms and Conditions</h3>
+                            <p>Failing to comply with the terms and conditions can result in legal actions.</p>
+                            <div>
+                                <label for="t-and-c-agree">I agree to the Terms and Conditions</label>
+                                <input type="checkbox" id="t-and-c-agree"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="window">
+                    <h2 id="final-review">Final Review</h2>
+                    <div class="user-details">
+                        <div class="review-section">
+                            <h3>Personal Details</h3>
+                            <div class="review-details">
+                                <p>First Name: <span id="first-name"></span></p>
+                                <p>Last Name: <span id="last-name"></span></p>
+                                <p>Email Address: <span id="email-address"></span></p>
+                                <p>Phone Number: <span id="phone-number"></span></p>
+                            </div>
+                        </div>
+                        <div class="review-section">
+                            <h3>Trip Details</h3>
+                            <div class="review-details">
+                                <p>Where: <span id="where"></span></p>
+                                <p>When: <span id="when"></span></p>
+                                <p>Adult Count: <span id="adult-count"></span></p>
+                                <p>Child Count: <span id="child-count"></span></p>
+                            </div>
+                        </div>
+                        <div class="review-section">
+                            <h3>Trip Addons</h3>
+                            <div class="review-details">
+                                <p>Cooking Facilities Required: <span id="cooking-tools"></span></p>
+                                <p>Surfboard Hire Count: <span id="surfboard-count"></span></p>
+                                <p>Goggles Hire Count: <span id="goggles-count"></span></p>
+                                <p>Wet Suit Hire Count: <span id="wetsuit-count"></span></p>
+                                <p>Scuba Gear Hire Count: <span id="scuba-count"></span></p>
+                            </div>
+                        </div>
+                        <div class="review-section">
+                            <h3>Terms and Conditions</h3>
+                            <div class="review-details">
+                                <p>Local Native Conservation Agreement: Agreed</p>
+                                <p>Terms and Conditions: Agreed</p>
+                            </div>
+                        </div>
+                        <div id="captcha">
+                            <h3>Please select the colour provided in the box below</h3>
+                            <p>Note: you can change the colour mode by clicking on the Up/Down arrow twice to reach HEX</p>
+                            <div id="captcha-content">
+                                <label for="captcha-color">Enter the colour into the box provided</label>
+                                <span id="captcha-display"></span>
+                                <input type="color" id="captcha-color"/>
+                            </div>
+                        </div>
+
+                        <button id="submit-button" type="button" onclick="testSubmit()">Submit Data</button>
+                    </div>
+                </div>
+            </form>
+            <br/>
+        </main>
+
+        <!-- Task 1: Create Piha Advertisement-->
+        <footer>
+            <a href="http://www.piha.co.nz/" id="ad-link" target="_blank">
+                <div id="ad">
+                    <div id="ad-bg-images">
+                        <img class="third" src="images/piha1.jpeg"/>
+                        <img class="second" src="images/piha3.jpeg"/>
+                        <img class="first" src="images/piha2.jpeg"/>
+                    </div>
+                    <div id="ad-content">
+                        <h1 id="main-text">Piha</h1>
+                        <div class="revealing-text">
+                            <ul class="scroll-text">
+                                <li><h1>Wild</h1></li>
+                                <li><h1>Scenic</h1></li>
+                                <li><h1>Home</h1></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="final-screen">
+                        <img class="black" src="images/tickets-black.png"/>
+                        <img class="white" src="images/tickets-white.png"/>
+                        <div id="final-screen-text">
+                            <h1>Visit Piha Today</h1>
+                        </div>
+                    </div>
+                    <p id="details">Jesse Nortey (1547620)</p>
+                </div>
+            </a>
+        </footer>
+
+        <div id="references">
+            <h1>References - Images</h1>
+            <a href="https://windows10spotlight.com/images/8ebc4eb63ab6548fd554ab4266e3fe9e">Piha Sunset - Windows 10 Spotlight</a>
+            <a href="https://www.stuff.co.nz/travel/kiwi-traveller/78556903/piha-beach--40-minutes-and-a-world-away-from-auckland">Piha Waterfront - Susan Blick</a>
+            <a href="https://www.dishadiscovers.com/wp-content/uploads/2021/04/piha-auckland-day-trips-735x478.jpeg">Piha Seaside - Disha Discovers</a>
+            <a href="https://www.toyota.co.nz/build-your-own/hilux/byo-hilux/">Hilux Side View - </a>
+            <a href="https://wallpaperaccess.com/full/2467586.jpg">Grassy Farmland - Wallpaper Access</a>
+            <a href="https://www.picng.com/down/45241">Car Wheels - PICNG.com</a>
         </div>
     </body>
 </html>
